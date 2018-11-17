@@ -13,11 +13,11 @@
         if(isset($_POST["pseudo"]) && isset($_POST["mdp"]) && isset($_POST["mdp2"]))
         {
             $pseudo = $_POST["pseudo"];
-            $pseudo = htmlentities($pseudo, ENT_NOQUOTES);
+            $pseudo = htmlspecialchars($pseudo, ENT_COMPAT,'ISO-8859-1', true);
             $mdp = $_POST["mdp"];
-            $mdp = htmlentities($mdp, ENT_NOQUOTES);
+            $mdp = htmlspecialchars($mdp, ENT_COMPAT,'ISO-8859-1', true);
             $mdp2 = $_POST["mdp2"];
-            $mdp2 = htmlentities($mdp2, ENT_NOQUOTES);
+            $mdp2 = htmlspecialchars($mdp2, ENT_COMPAT,'ISO-8859-1', true);
                 if (strlen($pseudo) < 50) 
                 {
                     if ($mdp == $mdp2) 

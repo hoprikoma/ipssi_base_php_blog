@@ -10,11 +10,15 @@
     <?php include('header.php');
     include('fonct_web.php');
     $bdd = connexion();
-    $x = $bdd->query("SELECT id FROM article ORDER BY id ASC");
-    while ($donnees = $x->fetch()) {
-        $id = $donnees['id'];
+    $nRows = $bdd->query('SELECT count(*) FROM article')->fetchColumn();
+    if ($nRows<1) {
+        echo " <h1>y'a rien ici</h1>";
+        $pages = 0;
     }
-    $pages = $id/5;
+    else {
+        $pages = $nRows/5;
+    }
+    
     if (!isset($_GET['page'])) {
         $actual_page = 0;
     }

@@ -1,4 +1,7 @@
 <?php
+if (!isset($_SESSION['pseudo'])) {
+    header('Location:index.php');
+}
 $id=uniqid();
 $target_dir = "../ressources".DIRECTORY_SEPARATOR.$article.DIRECTORY_SEPARATOR;
 if (!is_dir($target_dir)) {
