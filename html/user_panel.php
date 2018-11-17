@@ -13,6 +13,14 @@
     if (!isset($_SESSION['pseudo'])) {
         header('Location:index.php');
     }
+    ?>
+    <div class="container">
+        <center>
+            <a href="create_article.php" class="btn btn-primary">Creer un nouvel article</a>
+        </center>
+    </div>
+    
+    <?php
         $user = $_SESSION['pseudo'];
         $x = $bdd->query("SELECT * FROM article WHERE author='$user'");
         while ($donnees = $x->fetch()) {
@@ -20,7 +28,7 @@
             ?>
             <div class="container">
                 <div class="article-user col-xs-12 col-md-10 text-center d-flex justify-content-around">
-                        <a href="http://"><?php echo $donnees['title'];?></a>
+                        <h1><?php echo $donnees['title'];?></h1>
                     <form action="edit_article.php" method="get">
                         <input type="hidden" name="article" value="<?php echo $id?>">
                         <input type="hidden" name="choice" value="0">

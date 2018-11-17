@@ -13,9 +13,9 @@
 if(isset($_POST["mdp"]) && isset($_POST["mdp"]))
 {
     $pseudo = $_POST["pseudo"];
-    $pseudo = htmlentities($pseudo, ENT_NOQUOTES);
+    $pseudo = htmlspecialchars($pseudo, ENT_COMPAT,'ISO-8859-1', true);
     $mdp = $_POST["mdp"]; 
-    $mdp = htmlentities($mdp, ENT_NOQUOTES);
+    $mdp = htmlspecialchars($mdp, ENT_COMPAT,'ISO-8859-1', true);
     $bdd = connexion();
     $x =$bdd->query("SELECT `password` FROM `user` WHERE `username` = '$pseudo'");
     while($select = $x->fetch())

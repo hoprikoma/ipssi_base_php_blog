@@ -19,7 +19,6 @@
         if ($_GET['choice']=="0") {
             $article = $_GET['article'];
             $_SESSION['article'] = $article;
-            echo $article;
             $x = $bdd->query("SELECT * FROM article WHERE id='$article'");
             while ($donnees = $x->fetch()) {
                 ?>
@@ -39,7 +38,7 @@
             }
         }
         else {
-            $x = $bdd->prepare("DELETE FROM article WHERE title = :article");
+            $x = $bdd->prepare("DELETE FROM article WHERE id = '$article'");
             $x->bindParam(':article', $article);
             $x->execute();
             header('Location:user_panel.php');

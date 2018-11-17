@@ -44,6 +44,37 @@ while ($donnees = $x->fetch()) {
             </p>
         </div>
     </div>
+    <div class="container text-center">
+        <h2 class="text-center">Commentaires</h2>
+        <form action="comment_upload.php" method="post">
+            <?php 
+            if (isset($_SESSION['pseudo'])) {
+                $pseudoComm = $_SESSION['pseudo'];
+            }
+            else {
+                $pseudoComm ="";
+            }
+            ?>
+            <p>Votre pseudo :</p>
+            <input type="text" name="pseudo" value="<?php echo $pseudoComm?>" required>
+            <p>Votre commentaire :</p>
+            <textarea name="comment" cols="60" rows="5" required></textarea>
+            <?php $_SESSION['article'] = $article_view ?>
+            <br>
+            <input class="btn btn-dark" type="submit" value="Poster">
+        </form>
+        <hr>
+        <?php
+            $x = $bdd->query("SELECT id,username,content FROM commentaire WHERE article=$article_view");
+            while ($donnees = $x->fetch()) {
+                ?>
+                <p class="text-center"><?php echo $donnees['username']?> à écrit :</p>
+                <p class="text-center"><?php echo $donnees['content']?></p>
+                <hr>
+                <?php
+            }
+        ?>
+    </div>
     <?php
 }
 ?>
